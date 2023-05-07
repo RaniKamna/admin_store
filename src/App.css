@@ -1,0 +1,29 @@
+.addbtn{
+    text-align: center;
+    font-weight:600;
+    font-size: 16px;
+    color: #0f0f0f;
+    background-color: #d7d5d5;
+}
+
+h1{
+    color: #111010;
+}
+
+.table{
+    border-radius: 8px;
+}
+
+.modal-footer button svg{
+    font-size: 12.5px;
+    margin-bottom: 4px
+}
+
+.modal-footer .btn-light{
+    background-color: #d7d5d5;
+    font-weight: 600;
+}
+
+.activeerror{
+    color:red;
+}
