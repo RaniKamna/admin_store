@@ -39,7 +39,6 @@ export default function Home() {
                                 <th scope="col">VAT</th>
                                 <th scope="col">Price per Qty (net) </th>
                                 <th scope="col">Total Stock: </th>
-                                <th scope="col">Image</th>
                             </tr>
                         </thead>
                         <tbody>

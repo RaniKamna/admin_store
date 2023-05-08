@@ -37,12 +37,23 @@ export default function Productform() {
         if (Object.keys(productData).length <= 4) {
             return;
         } else {
-            axios.post("http://localhost:3001/product/new", productData)
+            productData.quantity = Number(productData.quantity);
+            productData.vat = Number(productData.vat);
+            productData.pricegross = Number(productData.pricegross);
+            console.log(productData);
+            axios.post("http://localhost:3001/product/new", {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Headers": "Origin,X-Requested-With,Content-Type,Accept"
+                }, productData
+            })
                 .then((resp) => {
+                    setProductData(resp.data);
                     console.log(resp.data)
                 })
                 .catch((err) => {
-                    console.log(err);
+                    console.log(err.response.data);
                 })
             refreshPage();
         }
@@ -64,7 +75,7 @@ export default function Productform() {
                 + Add
             </button>
 
-            <div className="modal fade" id="productForm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div className="modal fade" id="productForm" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -104,7 +115,7 @@ export default function Productform() {
                                             onChange={handleChange}
                                         >
                                             {
-                                                ((productData.vat === undefined || productData.vat.trim().length === 0) && showerror) ?
+                                                ((productData.vat === undefined || productData.vat.length === 0) && showerror) ?
                                                     (<p className='activeerror'>
                                                         <span>* </span>please fill the required field
                                                     </p>) : null
@@ -170,7 +181,7 @@ export default function Productform() {
                                         }
                                     </div>
                                 </div>
-                                <div className="row mb-2">
+                                {/* <div className="row mb-2">
                                     <label for="selectImage" className="col-sm-4 col-form-label">Image</label>
                                     <div className="col-sm-8">
                                         <input
@@ -182,7 +193,7 @@ export default function Productform() {
                                             id="selectImage"
                                         />
                                     </div>
-                                </div>
+                                </div> */}
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-light" data-bs-dismiss="modal"><FaTrash /> Delete</button>
                                     <button type="submit" className="btn btn-primary" onClick={postData}>Save</button>
