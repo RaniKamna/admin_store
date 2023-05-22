@@ -16,18 +16,18 @@ export default function Navbar() {
                     <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <Link className="nav-link active" aria-current="page" to="/">CRUD</Link>
+                                <Link className="nav-link active" aria-current="page" to="/">Grocery Store</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/">Text</Link>
+                                <Link className="nav-link" to="/">Admin</Link>
                             </li>
                         </ul>
                         <div className="navbar-nav mb-2 mb-lg-0 d-flex">
                             <li className="nav-item">
-                                <Link className="nav-link" to="/">Settings</Link>
+                                <Link className="nav-link" to="/settings">Settings</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/">About</Link>
+                                <Link className="nav-link" to="/about">About</Link>
                             </li>
                         </div>
                     </div>
