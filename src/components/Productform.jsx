@@ -40,7 +40,7 @@ export default function Productform() {
             productData.quantity = Number(productData.quantity);
             productData.vat = Number(productData.vat);
             productData.pricegross = Number(productData.pricegross);
-            console.log(productData);
+            console.log(productData.vat);
             axios.post("http://localhost:3001/product/new", {
                 headers: {
                     "Content-Type": "application/json",
@@ -50,7 +50,6 @@ export default function Productform() {
             })
                 .then((resp) => {
                     setProductData(resp.data);
-                    console.log(resp.data)
                 })
                 .catch((err) => {
                     console.log(err.response.data);
@@ -85,7 +84,7 @@ export default function Productform() {
                         <div className="modal-body">
                             <form onSubmit={handleSubmit}>
                                 <div className="row mb-2">
-                                    <label for="inputProductname" className="col-sm-4 col-form-label">Product Name</label>
+                                    <label htmlFor="inputProductname" className="col-sm-4 col-form-label">Product Name</label>
                                     <div className="col-sm-8">
                                         <input
                                             type="text"
@@ -105,7 +104,7 @@ export default function Productform() {
                                     </div>
                                 </div>
                                 <div className="row mb-2">
-                                    <label for="inputVat" className="col-sm-4 col-form-label">Vat</label>
+                                    <label htmlFor="inputVat" className="col-sm-4 col-form-label">Vat</label>
                                     <div className="col-sm-8">
                                         <select
                                             className="form-select"
@@ -114,22 +113,22 @@ export default function Productform() {
                                             name='vat'
                                             onChange={handleChange}
                                         >
-                                            {
-                                                ((productData.vat === undefined || productData.vat.length === 0) && showerror) ?
-                                                    (<p className='activeerror'>
-                                                        <span>* </span>please fill the required field
-                                                    </p>) : null
-
-                                            }
-                                            <option value='0' selected>Select Option</option>
+                                            <option value='0' defaultValue='selected'>Select Option</option>
                                             <option value='10'>10%</option>
                                             <option value='15'>15%</option>
                                             <option value='25'>25%</option>
                                         </select>
+                                        {
+                                            ((productData.vat === undefined || productData.vat.length === 0) && showerror) ?
+                                                (<p className='activeerror'>
+                                                    <span>* </span>please fill the required field
+                                                </p>) : null
+
+                                        }
                                     </div>
                                 </div>
                                 <div className="row mb-2">
-                                    <label for="inputQuantity" className="col-sm-4 col-form-label">Quantity</label>
+                                    <label htmlFor="inputQuantity" className="col-sm-4 col-form-label">Quantity</label>
                                     <div className="col-sm-8">
                                         <input
                                             type="number"
@@ -148,7 +147,7 @@ export default function Productform() {
                                     </div>
                                 </div>
                                 <div className="row mb-2">
-                                    <label for="inputPiceNet" className="col-sm-4 col-form-label">Price (net) </label>
+                                    <label htmlFor="inputPiceNet" className="col-sm-4 col-form-label">Price (net) </label>
                                     <div className="col-sm-8">
                                         <input
                                             type="number"
@@ -162,7 +161,7 @@ export default function Productform() {
                                     </div>
                                 </div>
                                 <div className="row mb-2">
-                                    <label for="inputPiceGross" className="col-sm-4 col-form-label">Price (gross) </label>
+                                    <label htmlFor="inputPiceGross" className="col-sm-4 col-form-label">Price (gross) </label>
                                     <div className="col-sm-8">
                                         <input
                                             type="number"
@@ -181,19 +180,6 @@ export default function Productform() {
                                         }
                                     </div>
                                 </div>
-                                {/* <div className="row mb-2">
-                                    <label for="selectImage" className="col-sm-4 col-form-label">Image</label>
-                                    <div className="col-sm-8">
-                                        <input
-                                            type="file"
-                                            value={productData.image}
-                                            name="image"
-                                            onChange={handleChange}
-                                            className="form-control"
-                                            id="selectImage"
-                                        />
-                                    </div>
-                                </div> */}
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-light" data-bs-dismiss="modal"><FaTrash /> Delete</button>
                                     <button type="submit" className="btn btn-primary" onClick={postData}>Save</button>
