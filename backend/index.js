@@ -1,6 +1,8 @@
 const app = require("./app");
-const port = 3001;
 const mongoDB = require('./config/db');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 process.on('uncaughtException', (err) => {
     console.log(`Error: ${err.message}`);
@@ -9,9 +11,9 @@ process.on('uncaughtException', (err) => {
 });
 
 mongoDB();
-
-const server = app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
+//console.log(process.env.API_PORT)
+const server = app.listen(process.env.API_PORT, () => {
+    console.log(`Example app listening on port ${process.env.API_PORT}`)
 });
 
 process.on("unhandledRejection", (err) => {

@@ -9,7 +9,8 @@ export default function Home() {
     const [showdata, setShowdata] = useState([]);
 
     const show = () => {
-        axios.get('http://localhost:3001/products')
+        //console.log(process.env.REACT_APP_API_URL);
+        axios.get(`${process.env.REACT_APP_API_URL}/products`)
             .then(function (response) {
                 const product = response.data.products;
                 setShowdata(product);

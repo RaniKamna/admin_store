@@ -41,7 +41,7 @@ export default function Productform() {
             productData.vat = Number(productData.vat);
             productData.pricegross = Number(productData.pricegross);
             console.log(productData.vat);
-            axios.post("http://localhost:3001/product/new", {
+            axios.post(`${process.env.REACT_APP_API_URL}/product/new`, {
                 headers: {
                     "Content-Type": "application/json",
                     "Access-Control-Allow-Origin": "*",
